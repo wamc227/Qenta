@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index RestAPI</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link href="css/custom.css" rel="stylesheet" />
+</head>
+<body>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="head-area d-flex aling-items-center">
+                <h1>All Players</h1>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form action="javascript:void(0)" method="put" onsubmit="updatePlayer()">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLongTitle">Update Player</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="player-first-name">Nombres</label>
+                                    <input type="hidden" id="player-id" />
+                                    <input type="text" id="player-first-name" placeholder="Nombres" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="player-last-name">Apellidos</label>
+                                    <input type="text" id="player-last-name" placeholder="Apellidos" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="player-position">Posición</label>
+                                    <input type="text" id="player-position" placeholder="Posición" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="player-height-feet">Estatura (feet)</label>
+                                    <input type="number" min="0" id="player-height-feet" placeholder="Estatura (feet)" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="player-height-inches">Estatura (inch)</label>
+                                    <input type="number" min="0" id="player-height-inches" placeholder="Estatura (inch)" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="player-weight-pounds">Peso (lb)</label>
+                                    <input type="number" min="0" id="player-weight-pounds" placeholder="Peso (lb)" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Example select</label>
+                                    <select id="player-team" class="form-control">
+                                        <option value="">Seleccione...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /Modal -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="dataTables_length" id="dt_length">
+                        <label class="form-inline">
+                            Show
+                            &nbsp;
+                            <select id="length" class="form-control input-sm" onchange="params.per_page = this.value;getPlayers();">
+                                <option value="10">10</option>
+                                <option value="25" selected="selected">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            &nbsp;
+                            Players
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group text-right">
+                        <label for="search">Search:</label>
+                        <input type="text" id="search" placeholder="Player" onchange="params.search = this.value;getPlayers();"/>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <table class="table table-striped" id="tblCourses">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Posición</th>
+                            <th>Estatura (feet)</th>
+                            <th>Estatura (inchs)</th>
+                            <th>Peso (lb)</th>
+                            <th>Equipo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="body-players">
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="tbl_historial_info" role="status" aria-live="polite"></div>
+                </div>
+                <div class="col-md-8 ">
+                    <label class="form-inline">
+                        Select
+                        &nbsp;
+                        <select id="paging" class="form-control input-sm" onchange="params.page = this.value;getPlayers();">
+
+                        </select>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
