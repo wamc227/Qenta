@@ -1,0 +1,37 @@
+﻿body {
+}
+
+.main-content {
+    margin-top: 20px;
+}
+
+#add-btn {
+    margin-left: 12px;
+    height: 32px;
+    max-width: 40px;
+    font-size: 1em;
+    border-radius: 50%;
+    align-content: center;
+    justify-content: center;
+}
+
+.player-add {
+    margin-top: 12px;
+}
+
+    .player-add > form {
+        width: inherit;
+    }
+
+    .player-add input[type=text] {
+        border-radius: 4px;
+        padding: 8px;
+    }
+
+.player-list {
+    margin-top: 12px;
+}
+
+#delete-c {
+    margin-left: 8px;
+}
